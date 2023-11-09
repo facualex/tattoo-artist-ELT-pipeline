@@ -1,0 +1,26 @@
+dbt-postgres:
+  target: dev
+
+  outputs:
+
+    dev:
+      type: postgres
+      host: postgres
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: tattoo_raw_data
+      schema: public 
+      threads: 3
+      keepalives_idle: 0 # default 0, indicating the system default
+      
+    prod:
+      type: postgres
+      host: postgres
+      user: postgres
+      password: postgres
+      port: 5432
+      dbname: tattoo_raw_data
+      schema: public 
+      threads: 3
+      keepalives_idle: 0 # default 0, indicating the system default

@@ -1,0 +1,29 @@
+# Checks for basic validations
+checks for dim_tattoo:
+  # Table emptiness check
+  - row_count > 0
+
+  # duplicate row check on the primary key column
+  - duplicate_count(tattoo_id) = 0
+
+  # Required columns check (no missing values)
+  - missing_count(id) = 0
+  - missing_count(tatuaje) = 0
+
+  - schema:
+      name: Confirm that required columns are present
+      fail:
+        when required column missing:
+          [tattoo_id, tatuaje, estilo,
+          zona, tiempo, necesita_repaso,
+          repaso_hecho, diseño, pagado] 
+        when wrong column type:
+          tattoo_id: text
+          tatuaje: text
+          estilo: text
+          zona: text
+          tiempo: text 
+          necesita_repaso: boolean
+          repaso_hecho: text
+          diseño: text
+          pagado: boolean

@@ -1,0 +1,9 @@
+data_source tattoo_raw_data:
+  type: postgres
+  connection:
+    host: postgres
+    port: '5432'
+    username: postgres 
+    password: postgres
+    database: tattoo_raw_data
+    schema: public

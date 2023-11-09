@@ -1,0 +1,5 @@
+name: tattoos_ELT
+profile: dbt-postgres
+models:
+  tattoos_ELT:
+    materialized: table

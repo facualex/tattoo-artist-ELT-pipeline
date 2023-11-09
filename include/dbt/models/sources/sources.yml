@@ -1,0 +1,6 @@
+version: 2
+
+sources:
+  - name: tattoos_ELT
+    tables:
+      - name: tattoos_raw_data
