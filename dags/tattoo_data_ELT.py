@@ -108,11 +108,25 @@ def tattoo_data_ELT():
 
     @task(task_id = "transform_quality_check")
     def transform_data_quality_check():
-        return True
+        import os
+
+        airflow_home_path = os.environ.get('AIRFLOW_HOME')
+
+        if airflow_home_path is None:
+            raise ValueError("AIRFLOW_HOME enviroment variable is not set.")
+
+        checks_file_path = os.path.join(airflow_home_path, 'include/soda/checks/transform/')
+        configuration_file_path = os.path.join(airflow_home_path, 'include/soda/configuration.yml')
+
+        run_check(data_source_name="tattoo_raw_data",
+                    check_name = "transform_quality_check",
+                    check_file_path=checks_file_path,
+                    yaml_configuration_file_path=configuration_file_path)
 
     chain(extract(),
           load(),
           load_data_quality_check(),
-          transform) 
+          transform,
+          transform_data_quality_check()) 
 
 tattoo_data_ELT()

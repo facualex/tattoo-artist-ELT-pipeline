@@ -7,7 +7,7 @@ checks for dim_tattoo:
   - duplicate_count(tattoo_id) = 0
 
   # Required columns check (no missing values)
-  - missing_count(id) = 0
+  - missing_count(tattoo_id) = 0
   - missing_count(tatuaje) = 0
 
   - schema:

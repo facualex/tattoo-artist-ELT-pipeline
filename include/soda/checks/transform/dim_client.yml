@@ -16,5 +16,5 @@ checks for dim_client:
         when required column missing:
           [client_id, nombre]
         when wrong column type:
-          id: text
+          client_id: text
           nombre: text

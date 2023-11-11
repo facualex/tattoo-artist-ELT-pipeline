@@ -1,8 +1,8 @@
 def run_check(data_source_name,
               check_name,
-              check_file_path,
+              check_file_path, # Can be a single file or a directory with .yml check files
               yaml_configuration_file_path):
-    from os import path
+    from os import path, listdir
 
     if not path.exists(yaml_configuration_file_path):
         raise ValueError(f"The configuration file path: {yaml_configuration_file_path} does not exist. Make sure that your configuration file is actually located there.")
@@ -24,9 +24,8 @@ def run_check(data_source_name,
     # Adding scan date variable to label the scan date
     scan.add_variables({ "date": datetime.now().strftime('%d-%m-%Y') })
 
-    # Loading the check yaml file
-    scan.add_sodacl_yaml_file(check_file_path)
-
+    scan.add_sodacl_yaml_files(check_file_path)
+      
     # Executing the scan
     scan.execute()
 
