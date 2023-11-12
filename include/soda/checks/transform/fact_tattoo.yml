@@ -1,0 +1,30 @@
+# Checks for basic validations
+checks for fact_tattoo:
+  # Table emptiness check
+  - row_count > 0
+
+  # duplicate row check on the primary key column
+  - duplicate_count(fact_id) = 0
+
+  # Required columns check (no missing values)
+  - missing_count(fact_id) = 0
+  - missing_count(client_id) = 0
+  - missing_count(tattoo_id) = 0
+  - missing_count(location_id) = 0
+  - missing_count(time_id) = 0
+
+  - schema:
+      name: Confirm that required columns are present
+      fail:
+        when required column missing:
+          [fact_id, client_id, tattoo_id, location_id, time_id, precio, total_expenditure, total_tattoos, average_tattoo_expenditure]
+        when wrong column type:
+          fact_id: text
+          client_id: text
+          tattoo_id: text
+          location_id: text
+          time_id: text
+          precio: integer
+          total_expenditure: bigint
+          total_tattoos: bigint
+          average_tattoo_expenditure: bigint

@@ -1,0 +1,25 @@
+# Checks for basic validations
+checks for dim_time:
+  # Table emptiness check
+  - row_count > 0
+
+  # duplicate row check on the primary key column
+  - duplicate_count(time_id) = 0
+
+  # Required columns check (no missing values)
+  - missing_count(time_id) = 0
+
+  - schema:
+      name: Confirm that required columns are present
+      fail:
+        when required column missing:
+          [time_id, fecha_tattoo, fecha_pago, mes_tattoo, año_tattoo, mes_pago, año_pago, month_earnings]
+        when wrong column type:
+          time_id: text
+          fecha_tattoo: date
+          fecha_pago: date
+          mes_tattoo: integer
+          año_tattoo: text
+          mes_pago: integer
+          año_pago: text
+          month_earnings: bigint

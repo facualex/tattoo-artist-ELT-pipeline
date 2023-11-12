@@ -1,0 +1,20 @@
+# Checks for basic validations
+checks for dim_location:
+  # Table emptiness check
+  - row_count > 0
+
+  # duplicate row check on the primary key column
+  - duplicate_count(location_id) = 0
+
+  # Required columns check (no missing values)
+  - missing_count(location_id) = 0
+  - missing_count(lugar) = 0
+
+  - schema:
+      name: Confirm that required columns are present
+      fail:
+        when required column missing:
+          [location_id, lugar]
+        when wrong column type:
+          location_id: text
+          lugar: text

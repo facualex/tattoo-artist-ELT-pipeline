@@ -10,6 +10,8 @@ checks for dim_tattoo:
   - missing_count(tattoo_id) = 0
   - missing_count(tatuaje) = 0
 
+  # TODO:Add missing value checks for the rest of the attributes 
+
   - schema:
       name: Confirm that required columns are present
       fail:

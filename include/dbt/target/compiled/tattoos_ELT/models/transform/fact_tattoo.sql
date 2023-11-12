@@ -9,7 +9,7 @@ WITH fct_tattoo_cte AS (
     FROM tattoo_raw_data
 )
 
-SELECT
+SELECT DISTINCT
     fact_id,
     dc.client_id,
     dt.tattoo_id,
@@ -17,7 +17,8 @@ SELECT
     dtime.time_id,
     precio,
     (SELECT SUM(precio) FROM fct_tattoo_cte WHERE client_id = dc.client_id GROUP BY client_id) AS total_expenditure,
-    (SELECT COUNT(fact_id) FROM fct_tattoo_cte WHERE client_id = dc.client_id GROUP BY client_id) AS total_tattoos
+    (SELECT COUNT(fact_id) FROM fct_tattoo_cte WHERE client_id = dc.client_id GROUP BY client_id) AS total_tattoos,
+    (SELECT SUM(precio) FROM fct_tattoo_cte WHERE client_id = dc.client_id GROUP BY client_id) / (SELECT COUNT(fact_id) FROM fct_tattoo_cte WHERE client_id = dc.client_id GROUP BY client_id) AS average_tattoo_expenditure
 FROM
     fct_tattoo_cte AS ft
 JOIN
