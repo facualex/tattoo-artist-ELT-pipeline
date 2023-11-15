@@ -3,7 +3,7 @@ SELECT
     tatuaje,
     estilo,
     zona,
-    tiempo,
+    NULLIF(NULLIF(REPLACE(tiempo, ' min', ''), ''), 'min')::INTEGER AS tiempo,
     "necesita repaso?" AS necesita_repaso,
     "repaso hecho?" AS repaso_hecho,
     diseño,

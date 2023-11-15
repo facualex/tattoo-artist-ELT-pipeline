@@ -21,7 +21,7 @@ default_args = {
     'owner': 'airflow',
     # This DAG is set to run for the first time on January 1, 2023. Best practice is to use a static
     # start_date. Subsequent DAG runs are instantiated based on the schedule
-    'start_date': datetime(2023, 11, 9),
+    'start_date': datetime(2023, 11, 12),
     'retries': 3, # If a task fails, it will retry 3 times.
     # When catchup=False, your DAG will only run the latest run that would have been scheduled. In this case, this means
     # that tasks will not be run between January 1, 2023 and 30 mins ago. When turned on, this DAG's first

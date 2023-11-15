@@ -24,7 +24,7 @@ checks for dim_tattoo:
           tatuaje: text
           estilo: text
           zona: text
-          tiempo: text 
+          tiempo: integer
           necesita_repaso: boolean
           repaso_hecho: text
           diseño: text
