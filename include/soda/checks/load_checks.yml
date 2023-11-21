@@ -57,6 +57,6 @@ checks for tattoo_raw_data:
           ig: text
           teléfono: text
           'mes pago': bigint
-          'año pago': bigint
-          mes: bigint
-          año: bigint
+          'año pago': bigint 
+          mes: bigint 
+          año: bigint 
