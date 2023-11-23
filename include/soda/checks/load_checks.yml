@@ -19,8 +19,6 @@ checks for tattoo_raw_data:
   - min(id) >= 0
   - min_length(nombre) >= 2
   - max_length(nombre) <= 30
-  - min(año) = 2023
-  - min("año pago") = 2023 # Data collection started on 2023
 
   # Validity checks
   - invalid_percent(fecha) = 0:
@@ -28,7 +26,10 @@ checks for tattoo_raw_data:
 
   - invalid_percent("fecha pago") = 0:
       valid format: date eu
- 
+
+  - invalid_percent(tiempo) = 0:
+      valid regex: (^\d* min$)
+
   - schema:
       name: Confirm that required columns are present
       fail:
@@ -36,7 +37,6 @@ checks for tattoo_raw_data:
           [id, nombre, precio,
           fecha, tatuaje, lugar,
           estilo, zona, tiempo, diseño,
-          mes pago, año pago, mes, año,
           pagado, fecha pago, necesita repaso?,
           repaso hecho?, ig, teléfono]
         when wrong column type:
@@ -56,7 +56,3 @@ checks for tattoo_raw_data:
           diseño: text
           ig: text
           teléfono: text
-          'mes pago': bigint
-          'año pago': bigint 
-          mes: bigint 
-          año: bigint 
